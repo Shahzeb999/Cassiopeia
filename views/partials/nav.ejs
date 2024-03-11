@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Blogify</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+        </li>
+        <% if ( locals.user ) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/add-new">Add Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/myblogs">My Blogs</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= locals.user.fullName %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/user/profile">Profile</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="/user/logout">Logout</a>
+            </div>
+          </li>
+          
+        <% } else {%>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/user/signup">Create Account</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/user/signin">Signin</a>
+          </li>
+        <% } %>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <% if (locals.error) { %>
+    <div class="alert alert-danger" role="alert">
+    <%= locals.error %>
+    </div>  
+  <% } %>

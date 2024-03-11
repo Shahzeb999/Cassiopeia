@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>HomePage</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-4">
+        <h2>Edit Profile</h2>
+        <%= JSON.stringify(user) %>
+        <form action="/user/edit-profile" method="POST">
+            <div class="form-group">
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" id="profileImage" name="profileImage">
+            </div>
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" class="form-control"  name="fullName" value="<%= user.fullName %>">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Current-Password</label>
+                <input
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword2"
+                  placeholder="Password"
+                />
+              </div>
+            <!-- Add other fields as necessary -->
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+
+    <%- include('./partials/script') %>
+</body>
+</html>
