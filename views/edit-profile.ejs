@@ -2,43 +2,50 @@
 <html lang="en">
 <head>
     <%- include('./partials/head') %>
-    <title>HomePage</title>
+    <title>Edit Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <%- include('./partials/nav') %>
 
-    <div class="container mt-4">
+    <div class="container">
         <h2>Edit Profile</h2>
-        <%= JSON.stringify(user) %>
-        <form action="/user/edit-profile" method="POST">
-            <div class="form-group">
-                <label for="profileImage">Profile Image:</label>
-                <input type="file" id="profileImage" name="profileImage">
+        <form action="/user/edit-profile" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="profileImage" class="form-label">Profile Image:</label>
+                <input type="file" class="form-control" id="profileImage" name="profileImage">
             </div>
-            <div class="form-group">
-                <label for="fullName">Full Name:</label>
-                <input type="text" class="form-control"  name="fullName" value="<%= user.fullName %>">
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name:</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" value="<%= user.fullName %>">
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Current-Password</label>
-                <input
-                  name="password"
-                  type="password"
-                  class="form-control"
-                  id="exampleInputPassword2"
-                  placeholder="Password"
-                />
-              </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Current Password:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your current password">
+            </div>
             <!-- Add other fields as necessary -->
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 
-
     <%- include('./partials/script') %>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
