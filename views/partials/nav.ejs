@@ -1,30 +1,22 @@
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap JS and jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
   .navbar-brand {
     font-weight: bold;
+    color: #fff; /* White text */
   }
 
   .navbar-nav .nav-link {
-    color: #fff;
+    color: #fff; /* White text */
     padding: 0.5rem 1rem;
     transition: all 0.3s;
   }
 
   .navbar-nav .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter on hover */
     border-radius: 5px;
   }
 
-  .navbar-nav .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-  }
 
   .navbar-toggler {
     border: none;
@@ -32,70 +24,70 @@
   }
 
   .navbar-toggler-icon {
-    background-color: #fff;
+    background-color: #fff; /* White toggler icon */
   }
 
   .navbar-toggler.active .navbar-toggler-icon {
-    background-color: #007bff;
+    background-color: #007bff; /* Light blue for active toggler */
   }
 
   .dropdown-menu {
-    background-color: #343a40;
+    background-color: #343a40; /* Dark blue dropdown */
   }
 
   .dropdown-item {
-    color: #fff;
+    color: #fff; /* White text */
     transition: background-color 0.3s;
   }
 
   .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter on hover */
   }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Cassiopeia</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <% if ( locals.user ) { %>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Cassiopedia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/blog/add-new">Add Blog</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/myblogs">My Blogs</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= locals.user.fullName %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/user/profile">Profile</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <a class="dropdown-item" href="/user/logout">Logout</a>
-          </div>
-        </li>
-      <% } else {%>
-        <li class="nav-item">
-          <a class="nav-link" href="/user/signup">Create Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user/signin">Signin</a>
-        </li>
-      <% } %>
-    </ul>
+        <% if ( locals.user ) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/add-new">Add Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/myblogs">My Blogs</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= locals.user.fullName %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/signup">Create Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/signin">Sign In</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<script>
-  $(document).ready(function() {
-    $('.navbar-toggler').on('click', function() {
-      $(this).toggleClass('active');
-    });
-  });
-</script>
+<% if (locals.error) { %>
+  <div class="alert alert-danger" role="alert">
+    <%= locals.error %>
+  </div>
+<% } %>
